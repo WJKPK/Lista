@@ -4,7 +4,7 @@
 
 list* init() //Funkcja inicjalizacji listy
 {
-	list* HEAD = (list*)malloc(sizeof(list));
+	list* HEAD = malloc(sizeof(HEAD));
 	HEAD->head = NULL;
 	return HEAD;
 }
@@ -13,7 +13,7 @@ int insert(list* header, int i) //Funkcja dodajaca jeden NODE zawierajacego licz
 {
 	if (header->head == NULL)
 	{
-		header->head = (node*)malloc(sizeof(node));
+		header->head = malloc(sizeof(node));
 		header->head->dane = i;
 		header->head->next = NULL;
 		return 0;
