@@ -4,7 +4,7 @@
 
 list* init() //Funkcja inicjalizacji listy
 {
-	list* HEAD = malloc(sizeof(*HEAD));
+	list* HEAD = malloc(sizeof(HEAD));
 	HEAD->head = NULL;
 	return HEAD;
 }
