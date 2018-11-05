@@ -55,8 +55,7 @@ int pop_last (list* header) //Funkcja usuwajaca ostatni NODE w dostepnej liscie.
 {
 	if (header->head == NULL)
 	{
-		printf("Lista jest pusta");
-		return 0;
+		return -1;
 	}
 
 	if (header->head->next == NULL)
