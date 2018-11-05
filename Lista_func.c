@@ -87,7 +87,6 @@ int clear (list* header) //Funkcja usuwajaca cala liste
 		currPtr=nextPtr;
 	}
 	header->head=NULL;
-	//free(header);
 	return 0;
 }
 
