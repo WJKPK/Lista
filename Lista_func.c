@@ -4,9 +4,9 @@
 
 list* init() //Funkcja inicjalizacji listy
 {
-	list* HEAD = malloc(sizeof(HEAD));
-	HEAD->head = NULL;
-	return HEAD;
+	list* start = malloc(sizeof(HEAD));
+	start->head = NULL;
+	return start;
 }
 
 int insert(list* header, int i) //Funkcja dodajaca jeden NODE zawierajacego liczbe naturalna oraz adres nastepnej komorki pamieci
