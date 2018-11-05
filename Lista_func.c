@@ -44,7 +44,6 @@ int pop_first (list* header) //Funkcja usuwajaca pierwszy NODE w dostepnej lisci
 	node* currPtr = header->head;
 	header->head = header->head->next;
 	free(currPtr);
-	currPtr = NULL;
 	return 0;
 }
 
