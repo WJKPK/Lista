@@ -7,7 +7,7 @@
 
 int main(void)
 {
-	list* starter = init();
+	listS* starter = init();
 	insert(starter, 5);
 	insert(starter, 3);
 	insert(starter, 3);
@@ -24,7 +24,7 @@ int main(void)
 
 Test(clear_tests, ClearWithLotInserts)
 {
-	list* starter = init();
+	listS* starter = init();
 
    insert(starter,3);
    insert(starter,3);
@@ -39,7 +39,7 @@ Test(clear_tests, ClearWithLotInserts)
 
 Test(print_tests, PrintAfterInit)
 {
-	list* starter = init();
+	listS* starter = init();
 	int i = print(starter);
 
 	cr_expect(i,"Blad funkcji print dla braku NODE'ow");
@@ -49,17 +49,17 @@ Test(print_tests, PrintAfterInit)
 
 Test(clear_tests, OnlyInitAndClear)
 {
-	list* starter = init();
+	listS* starter = init();
 	clear(starter);
 
-	cr_assert_null(starter->head,"Zainicjalizowana lista po użyciu clear() nie jest zakończona NULLem");
+	cr_assert_null(starter->head,"Zainicjalizowana listSa po użyciu clear() nie jest zakończona NULLem");
 
 	free(starter);
 }
 
 Test(pop_tests, PopFirstNode)
 {
-	list* starter = init();
+	listS* starter = init();
 	int rand_val = 3;
 	insert(starter,rand_val);
 	pop_first(starter);
@@ -71,7 +71,7 @@ Test(pop_tests, PopFirstNode)
 
 Test(pop_tests, PopMultipleNode)
 {
-	list* starter = init();
+	listS* starter = init();
 	int rand_val = 3;
 	for(int i=0; i<6; i++)
 	{
@@ -88,15 +88,15 @@ Test(pop_tests, PopMultipleNode)
 
 Test(pop_tests, PopLastPointtoNull)
 {
-	list* starter = init();
+	listS* starter = init();
 	insert(starter, 4);
-	node* adr_2 = starter->head->next; //adres wskazywany przez pierwszy node
+	nodeS* adr_2 = starter->head->next; //adres wskazywany przez pierwszy nodeS
 	insert(starter, 5);
-	node* adr_3 = starter->head->next->next; //adres wskazywany przez drugi node
+	nodeS* adr_3 = starter->head->next->next; //adres wskazywany przez drugi nodeS
 	pop_last(starter);
 
-	cr_assert_null(adr_2, "Po wykonaniu push_last() lista nie kończy się NULLem");
-	cr_expect(adr_2==adr_3,"Po wykonaniu push_last() nie zostaje nadpisany adres w przedostatnim node");
+	cr_assert_null(adr_2, "Po wykonaniu push_last() listSa nie kończy się NULLem");
+	cr_expect(adr_2==adr_3,"Po wykonaniu push_last() nie zostaje nadpisany adres w przedostatnim nodeS");
 
 	clear(starter);
 	free(starter);

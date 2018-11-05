@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include "Lista_funcc.h"
 
-list* init() //Funkcja inicjalizacji listy
+listS* init() //Funkcja inicjalizacji listSy
 {
-	list* start = malloc(sizeof(start));
+	listS* start = malloc(sizeof(start));
 	start->head = NULL;
 	return start;
 }
 
-int insert(list* header, int i) //Funkcja dodajaca jeden NODE zawierajacego liczbe naturalna oraz adres nastepnej komorki pamieci
+int insert(listS* header, int i) //Funkcja dodajaca jeden NODE zawierajacego liczbe naturalna oraz adres nastepnej komorki pamieci
 {
 	if (header == NULL)
 	{
@@ -18,40 +18,40 @@ int insert(list* header, int i) //Funkcja dodajaca jeden NODE zawierajacego licz
 	
 	if (header->head == NULL)
 	{
-		header->head = malloc(sizeof(node));
+		header->head = malloc(sizeof(nodeS));
 		header->head->dane = i;
 		header->head->next = NULL;
 		return 0;
 	}
 
-	node* currPtr = header->head;
+	nodeS* currPtr = header->head;
 
-	while(currPtr->next!=NULL)
+	while (currPtr->next!=NULL)
 	{
 		currPtr = currPtr->next;
 	}
 
-	currPtr->next=malloc(sizeof(node));
+	currPtr->next=malloc(sizeof(nodeS));
 	currPtr->next->dane = i;
 	currPtr = currPtr->next;
 	currPtr->next = NULL;
 	return 0;
 }
 
-int pop_first (list* header) //Funkcja usuwajaca pierwszy NODE w dostepnej liscie.
+int pop_first (listS* header) //Funkcja usuwajaca pierwszy NODE w dostepnej liscie.
 {
 	if (header->head == NULL)
 	{
 		return -1;
 	}
 
-	node* currPtr = header->head;
+	nodeS* currPtr = header->head;
 	header->head = header->head->next;
 	free(currPtr);
 	return 0;
 }
 
-int pop_last (list* header) //Funkcja usuwajaca ostatni NODE w dostepnej liscie. Jezeli nie ma NODE'ow informuje ze nie ma nic do usuniecia.
+int pop_last (listS* header) //Funkcja usuwajaca ostatni NODE w dostepnej liscie. Jezeli nie ma NODE'ow informuje ze nie ma nic do usuniecia.
 {
 	if (header->head == NULL)
 	{
@@ -65,8 +65,8 @@ int pop_last (list* header) //Funkcja usuwajaca ostatni NODE w dostepnej liscie.
 		return 0;
 	}
 
-	node* currPtr = header->head;
-	node* nextPtr= header->head->next;
+	nodeS* currPtr = header->head;
+	nodeS* nextPtr= header->head->next;
 
 		while(nextPtr->next!=NULL)
 	{
@@ -79,12 +79,12 @@ int pop_last (list* header) //Funkcja usuwajaca ostatni NODE w dostepnej liscie.
 		return 0;
 }
 
-int clear (list* header) //Funkcja usuwajaca cala liste
+int clear (listS* header) //Funkcja usuwajaca cala listSe
 {
-	node*currPtr=(node*)header->head;
-	while(currPtr!= NULL)
+	nodeS*currPtr=(nodeS*)header->head;
+	while (currPtr!= NULL)
 	{
-		node* nextPtr = (node*)currPtr->next;
+		nodeS* nextPtr = (nodeS*)currPtr->next;
 		free(currPtr);
 		currPtr=nextPtr;
 	}
@@ -92,7 +92,7 @@ int clear (list* header) //Funkcja usuwajaca cala liste
 	return 0;
 }
 
-int print (const list* header) //Funkcja printujaca cala liste
+int print (const listS* header) //Funkcja printujaca cala listSe
 {
 	if (header->head == NULL)
 		{
@@ -100,11 +100,11 @@ int print (const list* header) //Funkcja printujaca cala liste
 			return -1;
 		}
 
-	node* currPtr=(node*)header->head;
+	nodeS* currPtr=(nodeS*)header->head;
 
-	while(currPtr!= NULL) //jeżeli adres Node'a nie jest równy zero
+	while (currPtr!= NULL) //jeżeli adres Node'a nie jest równy zero
 	{
-		node* nextPtr = (node*)currPtr->next;
+		nodeS* nextPtr = (nodeS*)currPtr->next;
 		printf("Wartość w tym Node: %d\n",currPtr->dane);
 		printf("Adres następnego Node: %p\n",currPtr->next);
 		currPtr=nextPtr;
