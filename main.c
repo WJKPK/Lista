@@ -1,9 +1,3 @@
-/*Testy do zrobienia:
- * test: init>clear
- * 1xinsert>clear
- * multiple insert>clear
- Lista
- */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,97 +7,97 @@
 
 int main(void)
 {
-	list* HEAD = init();
-	insert(HEAD, 5);
-	insert(HEAD, 3);
-	insert(HEAD, 3);
-	insert(HEAD, 10);
-	pop_first(HEAD);
-	insert(HEAD, 10);
-	pop_last(HEAD);
-	print(HEAD);
-	clear(HEAD);
-	free(HEAD);
+	list* starter = init();
+	insert(starter, 5);
+	insert(starter, 3);
+	insert(starter, 3);
+	insert(starter, 10);
+	pop_first(starter);
+	insert(starter, 10);
+	pop_last(starter);
+	print(starter);
+	clear(starter);
+	free(starter);
 	return 0;
 }
 
 
 Test(clear_tests, ClearWithLotInserts)
 {
-	list* HEAD = init();
+	list* starter = init();
 
-   insert(HEAD,3);
-   insert(HEAD,3);
-   insert(HEAD,3);
-   insert(HEAD,3);
-   clear(HEAD);
+   insert(starter,3);
+   insert(starter,3);
+   insert(starter,3);
+   insert(starter,3);
+   clear(starter);
 
-   cr_assert_null(HEAD->head,"Lista po uzyciu funkcji clear nie jest zakonczona NULLem");
+   cr_assert_null(starter->head,"Lista po uzyciu funkcji clear nie jest zakonczona NULLem");
 
-   free(HEAD);
+   free(starter);
 }
 
 Test(print_tests, PrintAfterInit)
 {
-	list* HEAD = init();
-	int i = print(HEAD);
+	list* starter = init();
+	int i = print(starter);
 
 	cr_expect(i,"Blad funkcji print dla braku NODE'ow");
 
-	free(HEAD);
+	free(starter);
 }
 
 Test(clear_tests, OnlyInitAndClear)
 {
-	list* HEAD = init();
-	clear(HEAD);
+	list* starter = init();
+	clear(starter);
 
-	cr_assert_null(HEAD->head,"Zainicjalizowana lista po użyciu clear() nie jest zakończona NULLem");
+	cr_assert_null(starter->head,"Zainicjalizowana lista po użyciu clear() nie jest zakończona NULLem");
 
-	free(HEAD);
+	free(starter);
 }
 
 Test(pop_tests, PopFirstNode)
 {
-	list* HEAD = init();
+	list* starter = init();
 	int rand_val = 3;
-	insert(HEAD,rand_val);
-	pop_first(HEAD);
+	insert(starter,rand_val);
+	pop_first(starter);
 
-	cr_assert_null(HEAD->head,"HEAD wskazuje na NULL po użyciu pop() na jednoelementowej liście");
+	cr_assert_null(starter->head,"starter wskazuje na NULL po użyciu pop() na jednoelementowej liście");
 
-	free(HEAD);
+	free(starter);
 }
 
 Test(pop_tests, PopMultipleNode)
 {
-	list* HEAD = init();
+	list* starter = init();
 	int rand_val = 3;
 	for(int i=0; i<6; i++)
 	{
-		insert(HEAD,i*rand_val);
+		insert(starter,i*rand_val);
 	}
-	pop_first(HEAD);
-	pop_first(HEAD);
+	pop_first(starter);
+	pop_first(starter);
 
-	cr_assert_not_null(HEAD->head,"HEAD wskazuje na NULL po użyciu pop() na wieloelementowej liście (a nie powinien)");
+	cr_assert_not_null(starter->head,"starter wskazuje na NULL po użyciu pop() na wieloelementowej liście (a nie powinien)");
 
-	clear(HEAD);
-	free(HEAD);
+	clear(starter);
+	free(starter);
 }
 
 Test(pop_tests, PopLastPointtoNull)
 {
-	list* HEAD = init();
-	insert(HEAD, 4);
-	node* adr_2 = HEAD->head->next; //adres wskazywany przez pierwszy node
-	insert(HEAD, 5);
-	node* adr_3 = HEAD->head->next->next; //adres wskazywany przez drugi node
-	pop_last(HEAD);
+	list* starter = init();
+	insert(starter, 4);
+	node* adr_2 = starter->head->next; //adres wskazywany przez pierwszy node
+	insert(starter, 5);
+	node* adr_3 = starter->head->next->next; //adres wskazywany przez drugi node
+	pop_last(starter);
 
 	cr_assert_null(adr_2, "Po wykonaniu push_last() lista nie kończy się NULLem");
 	cr_expect(adr_2==adr_3,"Po wykonaniu push_last() nie zostaje nadpisany adres w przedostatnim node");
 
-	clear(HEAD);
-	free(HEAD);
+	clear(starter);
+	free(starter);
 }
