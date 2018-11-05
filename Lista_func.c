@@ -4,13 +4,18 @@
 
 list* init() //Funkcja inicjalizacji listy
 {
-	list* HEAD = malloc(sizeof(HEAD));
-	HEAD->head = NULL;
-	return HEAD;
+	list* start = malloc(sizeof(HEAD));
+	start->head = NULL;
+	return start;
 }
 
 int insert(list* header, int i) //Funkcja dodajaca jeden NODE zawierajacego liczbe naturalna oraz adres nastepnej komorki pamieci
 {
+	if (header == NULL)
+	{
+		return -1;
+	}
+	
 	if (header->head == NULL)
 	{
 		header->head = malloc(sizeof(node));
@@ -33,18 +38,16 @@ int insert(list* header, int i) //Funkcja dodajaca jeden NODE zawierajacego licz
 	return 0;
 }
 
-int pop_first (list* header) //Funkcja usuwajaca pierwszy NODE w dostepnej liscie. Jezeli nie ma NODE'ow informuje ze nie ma nic do usuniecia.
+int pop_first (list* header) //Funkcja usuwajaca pierwszy NODE w dostepnej liscie.
 {
 	if (header->head == NULL)
 	{
-		printf("Lista jest pusta");
-		return 0;
+		return -1;
 	}
 
 	node* currPtr = header->head;
 	header->head = header->head->next;
 	free(currPtr);
-	currPtr = NULL;
 	return 0;
 }
 
@@ -63,8 +66,8 @@ int pop_last (list* header) //Funkcja usuwajaca ostatni NODE w dostepnej liscie.
 		return 0;
 	}
 
-		node* currPtr = header->head;
-		node* nextPtr= header->head->next;
+	node* currPtr = header->head;
+	node* nextPtr= header->head->next;
 
 		while(nextPtr->next!=NULL)
 	{
@@ -95,7 +98,7 @@ int print (const list* header) //Funkcja printujaca cala liste
 	if (header->head == NULL)
 		{
 			printf("Nie ma nic do druku");
-			return 1;
+			return -1;
 		}
 
 	node* currPtr=(node*)header->head;
