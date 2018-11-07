@@ -13,7 +13,6 @@ int main(void)
 	insert(starter, 3);
 	insert(starter, 11);
 	pop_first(starter,&x);
-	printf("Wartość po pierwszym popie to: %d\n", x);
 	pop_last(starter, &x);
 	print(starter);
 	clear(starter);
