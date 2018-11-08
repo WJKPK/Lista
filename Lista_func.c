@@ -77,13 +77,13 @@ int pop_last (listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej
 	nodeS* currPtr = header->head;
 	nodeS* nextPtr= currPtr->next;
 
-	while(nextPtr->next!=NULL)
+	while (nextPtr->next!=NULL)
 	{
 		nextPtr = nextPtr->next;
 		currPtr = currPtr->next;
 	}
 
-	if(c!=NULL)
+	if (c!=NULL)
 	{
 	*c = nextPtr->dane;
 	}
