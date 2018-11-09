@@ -38,7 +38,7 @@ int insert(listS* header, int i) //Funkcja dodajaca jeden NODE zawierajacego lic
 	return 0;
 }
 
-int pop_first (listS* header, int* c) //Funkcja usuwajaca pierwszy NODE w dostepnej liscie.
+int pop_first(listS* header, int* c) //Funkcja usuwajaca pierwszy NODE w dostepnej liscie.
 {
 	if (header->head == NULL)
 	{
@@ -47,7 +47,7 @@ int pop_first (listS* header, int* c) //Funkcja usuwajaca pierwszy NODE w dostep
 
 	if(c!=NULL)
 	{
-	*c = header->head->dane;
+		*c = header->head->dane;
 	}
 	nodeS* currPtr = header->head;
 	header->head = header->head->next;
@@ -55,7 +55,7 @@ int pop_first (listS* header, int* c) //Funkcja usuwajaca pierwszy NODE w dostep
 	return 0;
 }
 
-int pop_last (listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej liscie. Jezeli nie ma NODE'ow informuje ze nie ma nic do usuniecia.
+int pop_last(listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej liscie. Jezeli nie ma NODE'ow informuje ze nie ma nic do usuniecia.
 {
 	if (header->head == NULL)
 	{
@@ -66,7 +66,7 @@ int pop_last (listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej
 	{
 		if(c!=NULL)
 		{
-		*c = header->head->dane;
+			*c = header->head->dane;
 		}
 
 		free(header->head);
@@ -77,22 +77,23 @@ int pop_last (listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej
 	nodeS* currPtr = header->head;
 	nodeS* nextPtr= currPtr->next;
 
-	while(nextPtr->next!=NULL)
+	while (nextPtr->next!=NULL)
 	{
 		nextPtr = nextPtr->next;
 		currPtr = currPtr->next;
 	}
 
-	if(c!=NULL)
+	if (c!=NULL)
 	{
-	*c = nextPtr->dane;
+		*c = nextPtr->dane;
 	}
 	free(nextPtr);
 	currPtr->next = NULL;
 	return 0;
 }
 
-int clear (listS* header) //Funkcja usuwajaca cala listSe
+
+int clear(listS* header) //Funkcja usuwajaca cala liste
 {
 	if (header == NULL)
 	{
@@ -110,7 +111,8 @@ int clear (listS* header) //Funkcja usuwajaca cala listSe
 	return 0;
 }
 
-int print (const listS* header) //Funkcja printujaca cala listSe
+
+int print(const listS* header) //Funkcja printujaca cala liste
 {
 	if (header->head == NULL)
 		{
