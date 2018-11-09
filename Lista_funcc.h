@@ -13,11 +13,11 @@ typedef struct listS
 } listS;
 
 //Deklaracje funkcji
-	int pop_last (listS* header, int* a);
-	int insert (listS* header, int i);
-	int pop_first (listS* header, int* a);
-	int clear (listS* header);
-	int print (const listS* header);
+	int pop_last(listS* header, int* a);
+	int insert(listS* header, int i);
+	int pop_first(listS* header, int* a);
+	int clear(listS* header);
+	int print(const listS* header);
 	listS* init();
 
 #endif /* LISTA_FUNCC_H_ */
