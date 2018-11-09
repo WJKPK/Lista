@@ -45,7 +45,7 @@ int pop_first (listS* header, int* c) //Funkcja usuwajaca pierwszy NODE w dostep
 		return -1;
 	}
 
-	if (c!=NULL)
+	if(c!=NULL)
 	{
 	*c = header->head->dane;
 	}
@@ -64,7 +64,7 @@ int pop_last (listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej
 
 	if (header->head->next == NULL)
 	{
-		if (c!=NULL)
+		if(c!=NULL)
 		{
 		*c = header->head->dane;
 		}
@@ -92,7 +92,7 @@ int pop_last (listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej
 	return 0;
 }
 
-int clear (listS* header) //Funkcja usuwajaca cala liste
+int clear (listS* header) //Funkcja usuwajaca cala listSe
 {
 	if (header == NULL)
 	{
@@ -105,12 +105,12 @@ int clear (listS* header) //Funkcja usuwajaca cala liste
 		free(currPtr);
 		currPtr=nextPtr;
 	}
-	header->head=NULL;
 	free(header);
+	header->head=NULL;
 	return 0;
 }
 
-int print (const listS* header) //Funkcja printujaca cala liste
+int print (const listS* header) //Funkcja printujaca cala listSe
 {
 	if (header->head == NULL)
 		{

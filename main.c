@@ -18,5 +18,3 @@ int main(void)
 	clear(starter);
 	return 0;
 }
-
-
