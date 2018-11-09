@@ -2,14 +2,14 @@
 #include <stdlib.h>
 #include "Lista_funcc.h"
 
-listS* init() //Funkcja inicjalizacji listSy
+listS* init()
 {
 	listS* start = (listS*)malloc(sizeof(start));
 	start->head = NULL;
 	return start;
 }
 
-int insert(listS* header, int i) //Funkcja dodajaca jeden NODE zawierajacego liczbe naturalna oraz adres nastepnej komorki pamieci
+int insert(listS* header, int i) 
 {
 	if (header == NULL)
 	{
@@ -38,7 +38,7 @@ int insert(listS* header, int i) //Funkcja dodajaca jeden NODE zawierajacego lic
 	return 0;
 }
 
-int pop_first(listS* header, int* c) //Funkcja usuwajaca pierwszy NODE w dostepnej liscie.
+int pop_first(listS* header, int* c) 
 {
 	if (header->head == NULL)
 	{
@@ -55,7 +55,7 @@ int pop_first(listS* header, int* c) //Funkcja usuwajaca pierwszy NODE w dostepn
 	return 0;
 }
 
-int pop_last(listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej liscie. Jezeli nie ma NODE'ow informuje ze nie ma nic do usuniecia.
+int pop_last(listS* header,int* c)
 {
 	if (header->head == NULL)
 	{
@@ -92,8 +92,7 @@ int pop_last(listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej 
 	return 0;
 }
 
-
-int clear(listS* header) //Funkcja usuwajaca cala liste
+int clear(listS* header)
 {
 	if (header == NULL)
 	{
@@ -112,7 +111,7 @@ int clear(listS* header) //Funkcja usuwajaca cala liste
 }
 
 
-int print(const listS* header) //Funkcja printujaca cala liste
+int print(const listS* header)
 {
 	if (header->head == NULL)
 		{
