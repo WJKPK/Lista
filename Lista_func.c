@@ -47,7 +47,7 @@ int pop_first(listS* header, int* c) //Funkcja usuwajaca pierwszy NODE w dostepn
 
 	if (c!=NULL)
 	{
-	*c = header->head->dane;
+		*c = header->head->dane;
 	}
 	nodeS* currPtr = header->head;
 	header->head = header->head->next;
@@ -66,7 +66,7 @@ int pop_last(listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej 
 	{
 		if (c!=NULL)
 		{
-		*c = header->head->dane;
+			*c = header->head->dane;
 		}
 
 		free(header->head);
@@ -85,7 +85,7 @@ int pop_last(listS* header,int* c) //Funkcja usuwajaca ostatni NODE w dostepnej 
 
 	if (c!=NULL)
 	{
-	*c = nextPtr->dane;
+		*c = nextPtr->dane;
 	}
 	free(nextPtr);
 	currPtr->next = NULL;
