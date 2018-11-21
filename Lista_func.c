@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Lista_funcc.h"
 
-listS* init() //Funkcja inicjalizacji listSy
+listS* init(void) //Funkcja inicjalizacji listSy
 {
 	listS* start = (listS*)malloc(sizeof(start));
 	start->head = NULL;
