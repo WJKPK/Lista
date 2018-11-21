@@ -18,6 +18,6 @@ typedef struct listS
 	int pop_first(listS* header, int* a);
 	int clear(listS* header);
 	int print(const listS* header);
-	listS* init();
+	listS* init(void);
 
 #endif /* LISTA_FUNCC_H_ */

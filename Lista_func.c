@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "Lista_funcc.h"
 
-listS* init()
+listS* init(void)
 {
 	listS* start = (listS*)malloc(sizeof(start));
 	start->head = NULL;
