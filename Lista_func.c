@@ -13,7 +13,7 @@ listS* init(void)
 	return start;
 }
 
-int insert(listS* header, const int i)
+int insert(listS* restrict header, const int i)
 {
 	if (header == NULL)
 	{
