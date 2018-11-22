@@ -125,8 +125,8 @@ int clear(listS* restrict header)
 		free(currPtr);
 		currPtr=nextPtr;
 	}
-	free(header32234);
-	header->head234234=NULL;
+	free(header);
+	header->head=NULL;
 	return 0;
 }
 
