@@ -3,6 +3,26 @@
 #include "Lista_funcc.h"
 #include <criterion/criterion.h>
 
+static int print(const listS* restrict header)
+{
+	if (header->head == NULL)
+		{
+			printf("Nie ma nic do druku");
+			return -1;
+		}
+
+	nodeS* currPtr=(nodeS*)header->head;
+
+	while (currPtr!= NULL) //jeżeli adres Node'a nie jest równy zero
+	{
+		nodeS* nextPtr = (nodeS*)currPtr->next;
+		printf("Wartość w tym Node: %d\n",currPtr->dane);
+		printf("Adres następnego Node: %p\n",currPtr->next);
+		currPtr=nextPtr;
+	}
+	return 0;
+}
+
 Test(clear_tests, ClearTest)
 {
 	listS* starter = init();
@@ -13,7 +33,7 @@ Test(clear_tests, ClearTest)
 Test(insert_tests, insertTest)
 {
 	listS* starter = init();
-	int ins_val = 4;
+	const int ins_val = 4;
 	int test_i = insert(starter,ins_val);
 	cr_expect(test_i == 0 ,"Funkcja insert nie działa prawidłowo");
 	cr_expect(starter->head->dane == ins_val ,"Funkcja insert nie przypisuje odpowiedniej wartości dla pierwszego nodea");
@@ -38,7 +58,7 @@ Test(pop_tests, PopFirstNode)
 Test(pop_tests, PopMultipleNode)
 {
 	listS* starter = init();
-	int rand_val = 3;
+	const int rand_val = 3;
 	int x =0;
 	for(int i=0; i<6; i++)
 	{
@@ -63,7 +83,7 @@ Test(pop_tests, PopLastFirst)
 	cr_expect(x==2*my_val,"Wartość zwracana przez pop_last() nie jest zgodna z oczekiwaną");
 
 	pop_first(starter,&x);
-	cr_expect(x==my_val,"Wartość zwracana przez pop_first nie jest zgodna z oczekiwaną");
+	cr_expect(x==my_val,"Wartość zwracana przez pop_first() nie jest zgodna z oczekiwaną");
 
 	clear(starter);
 }

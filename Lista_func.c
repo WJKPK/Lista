@@ -5,11 +5,15 @@
 listS* init(void)
 {
 	listS* start = (listS*)malloc(sizeof(start));
+	if (start == NULL)
+		{
+			return NULL;
+		}
 	start->head = NULL;
 	return start;
 }
 
-int insert(listS* header, int i) 
+int insert(listS* header, const int i)
 {
 	if (header == NULL)
 	{
@@ -19,6 +23,10 @@ int insert(listS* header, int i)
 	if (header->head == NULL)
 	{
 		header->head = (nodeS*)malloc(sizeof(nodeS));
+		if (header->head == NULL)
+		{
+			return -1;
+		}
 		header->head->dane = i;
 		header->head->next = NULL;
 		return 0;
@@ -32,14 +40,22 @@ int insert(listS* header, int i)
 	}
 
 	currPtr->next=(nodeS*)malloc(sizeof(nodeS));
+	if (currPtr->next == NULL)
+			{
+				return -1;
+			}
 	currPtr->next->dane = i;
 	currPtr = currPtr->next;
 	currPtr->next = NULL;
 	return 0;
 }
 
-int pop_first(listS* header, int* c) 
+int pop_first(listS* restrict header, int* restrict c)
 {
+	if (header == NULL)
+	{
+		return -1;
+	}
 	if (header->head == NULL)
 	{
 		return -1;
@@ -55,8 +71,13 @@ int pop_first(listS* header, int* c)
 	return 0;
 }
 
-int pop_last(listS* header,int* c)
+int pop_last(listS* restrict header,int* restrict c)
 {
+	if (header == NULL)
+	{
+		return -1;
+	}
+
 	if (header->head == NULL)
 	{
 		return -1;
@@ -92,16 +113,16 @@ int pop_last(listS* header,int* c)
 	return 0;
 }
 
-int clear(listS* header)
+int clear(listS* restrict header)
 {
 	if (header == NULL)
 	{
 		return -1;
 	}
-	nodeS*currPtr=(nodeS*)header->head;
+	nodeS*currPtr=header->head;
 	while (currPtr!= NULL)
 	{
-		nodeS* nextPtr = (nodeS*)currPtr->next;
+		nodeS* nextPtr = currPtr->next;
 		free(currPtr);
 		currPtr=nextPtr;
 	}
@@ -111,22 +132,4 @@ int clear(listS* header)
 }
 
 
-int print(const listS* header)
-{
-	if (header->head == NULL)
-		{
-			printf("Nie ma nic do druku");
-			return -1;
-		}
 
-	nodeS* currPtr=(nodeS*)header->head;
-
-	while (currPtr!= NULL) //jeżeli adres Node'a nie jest równy zero
-	{
-		nodeS* nextPtr = (nodeS*)currPtr->next;
-		printf("Wartość w tym Node: %d\n",currPtr->dane);
-		printf("Adres następnego Node: %p\n",currPtr->next);
-		currPtr=nextPtr;
-	}
-	return 0;
-}
