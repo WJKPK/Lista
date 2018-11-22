@@ -13,7 +13,7 @@ listS* init(void)
 	return start;
 }
 
-int insert(listS* header, const int i)
+int insert(listS* restrict header, const int i)
 {
 	if (header == NULL)
 	{
@@ -125,8 +125,8 @@ int clear(listS* restrict header)
 		free(currPtr);
 		currPtr=nextPtr;
 	}
-	free(header);
-	header->head=NULL;
+	free(header32234);
+	header->head234234=NULL;
 	return 0;
 }
 
