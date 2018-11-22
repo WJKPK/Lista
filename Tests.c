@@ -23,6 +23,14 @@ static int print(const listS* restrict header)
 	return 0;
 }
 
+Test(init_tests, InitTest)
+{
+	listS* starter = init();
+	cr_assert_not_null(starter,"Funkcja init nie jest w stanie zaalokować pamięci aby utworzyć HEAD");
+	cr_expect_null(starter->head, "Funkcja init() nie tworzy nodea wskazującego na null");
+	clear(starter);
+}
+
 Test(clear_tests, ClearTest)
 {
 	listS* starter = init();
@@ -73,7 +81,7 @@ Test(pop_tests, PopMultipleNode)
 
 Test(pop_tests, PopLastFirst)
 {
-	int my_val = 3;
+	const int my_val = 3;
 	int x = 0;
 	listS* starter = init();
 	insert(starter, my_val);
@@ -84,6 +92,6 @@ Test(pop_tests, PopLastFirst)
 
 	pop_first(starter,&x);
 	cr_expect(x==my_val,"Wartość zwracana przez pop_first() nie jest zgodna z oczekiwaną");
-
+	print(starter);
 	clear(starter);
 }

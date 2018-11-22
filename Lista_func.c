@@ -77,7 +77,6 @@ int pop_last(listS* restrict header,int* restrict c)
 	{
 		return -1;
 	}
-
 	if (header->head == NULL)
 	{
 		return -1;
