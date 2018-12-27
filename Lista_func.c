@@ -7,25 +7,39 @@ listS* init(void)
 	listS* start = (listS*)malloc(sizeof(start));
 	if (start == NULL)
 		{
-			return NULL;
+			exit(EXIT_FAILURE);
 		}
 	start->head = NULL;
 	return start;
 }
 
-int insert(listS* restrict header, const int i)
+int push_first(listS* restrict header, const int i)
+{
+	if (header == NULL)
+		{
+			exit(EXIT_FAILURE);
+		}
+
+	nodeS* tempFirsNode_p = header->head;
+	header->head = (nodeS*)malloc(sizeof(header->head));
+	header->head->dane = i;
+	header->head->next = tempFirsNode_p;
+	return 0;
+}
+
+int push_last(listS* restrict header, const int i)
 {
 	if (header == NULL)
 	{
-		return -1;
+		exit(EXIT_FAILURE);
 	}
 	
 	if (header->head == NULL)
 	{
-		header->head = (nodeS*)malloc(sizeof(nodeS));
+		header->head = (nodeS*)malloc(sizeof(header->head));
 		if (header->head == NULL)
 		{
-			return -1;
+			exit(EXIT_FAILURE);
 		}
 		header->head->dane = i;
 		header->head->next = NULL;
@@ -34,15 +48,15 @@ int insert(listS* restrict header, const int i)
 
 	nodeS* currPtr = header->head;
 
-	while (currPtr->next!=NULL)
+	while (currPtr->next != NULL)
 	{
 		currPtr = currPtr->next;
 	}
 
-	currPtr->next=(nodeS*)malloc(sizeof(nodeS));
+	currPtr->next = (nodeS*)malloc(sizeof(currPtr->next));
 	if (currPtr->next == NULL)
 			{
-				return -1;
+				exit(EXIT_FAILURE);
 			}
 	currPtr->next->dane = i;
 	currPtr = currPtr->next;
@@ -54,14 +68,14 @@ int pop_first(listS* restrict header, int* restrict c)
 {
 	if (header == NULL)
 	{
-		return -1;
+		exit(EXIT_FAILURE);
 	}
 	if (header->head == NULL)
 	{
-		return -1;
+		exit(EXIT_FAILURE);
 	}
 
-	if(c!=NULL)
+	if(c != NULL)
 	{
 		*c = header->head->dane;
 	}
@@ -71,20 +85,20 @@ int pop_first(listS* restrict header, int* restrict c)
 	return 0;
 }
 
-int pop_last(listS* restrict header,int* restrict c)
+int pop_last(listS* restrict header, int* restrict c)
 {
 	if (header == NULL)
 	{
-		return -1;
+		exit(EXIT_FAILURE);
 	}
 	if (header->head == NULL)
 	{
-		return -1;
+		exit(EXIT_FAILURE);
 	}
 
 	if (header->head->next == NULL)
 	{
-		if(c!=NULL)
+		if(c != NULL)
 		{
 			*c = header->head->dane;
 		}
@@ -97,13 +111,13 @@ int pop_last(listS* restrict header,int* restrict c)
 	nodeS* currPtr = header->head;
 	nodeS* nextPtr= currPtr->next;
 
-	while (nextPtr->next!=NULL)
+	while (nextPtr->next != NULL)
 	{
 		nextPtr = nextPtr->next;
 		currPtr = currPtr->next;
 	}
 
-	if (c!=NULL)
+	if (c != NULL)
 	{
 		*c = nextPtr->dane;
 	}
@@ -116,17 +130,17 @@ int clear(listS* restrict header)
 {
 	if (header == NULL)
 	{
-		return -1;
+		exit(EXIT_FAILURE);
 	}
-	nodeS*currPtr=header->head;
-	while (currPtr!= NULL)
+	nodeS* currPtr = header->head;
+	while (currPtr != NULL)
 	{
 		nodeS* nextPtr = currPtr->next;
 		free(currPtr);
 		currPtr=nextPtr;
 	}
 	free(header);
-	header->head=NULL;
+	header->head = NULL;
 	return 0;
 }
 

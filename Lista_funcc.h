@@ -13,8 +13,9 @@ typedef struct listS
 } listS;
 
 //Deklaracje funkcji
+	int push_first(listS* restrict header, const int i);
+	int push_last(listS* restrict header, const int i);
 	int pop_last(listS* restrict header, int* restrict a);
-	int insert(listS* restrict header, int i);
 	int pop_first(listS* restrict header, int* restrict a);
 	int clear(listS* restrict header);
 	listS* init(void);
